@@ -17,6 +17,8 @@
 		}
 	];
 
+    
+
 	let current = 0;
 
 	function prev() {
@@ -93,6 +95,12 @@
 				</div>
 			</button>
 		</div>
+
+
+
+        
+
+
 
 		<div class="flex w-full flex-row py-2 mt-2">
 			<div class="m-auto flex h-3 flex-row gap-3">

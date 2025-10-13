@@ -9,13 +9,20 @@
 		Rocket,
 		Gauge,
 		Shield,
-		ChevronDown
+		ChevronDown,
+		Github,
+		Users ,
+		Twitter,
+		Linkedin,
+		Youtube,
+        Gamepad
+
 	} from 'lucide-svelte';
 
 	import pavLogo from '$lib/images/pav.png';
 	// import showcaseImg from '$lib/images/showcase.png';
-	import gdxgltfImg from '$lib/images/gdx-gltf.png';
-	import libgdxImg from '$lib/images/libgdx.png';
+	// import gdxgltfImg from '$lib/images/gdx-gltf.png';
+	// import libgdxImg from '$lib/images/libgdx.png';
 	import hybridImg from '$lib/images/hybrid.png';
 	import deployImg from '$lib/images/deploy.png';
 	import Showcase from '$lib/Showcase.svelte';
@@ -68,6 +75,28 @@
 		}
 	];
 
+	const socials = [
+		{
+			name: 'GitHub',
+			icon: Github,
+			link: 'https://github.com/ptsdpatient'
+		},{
+			name: 'Itch io',
+			icon: Gamepad,
+			link: 'https://discord.gg/SYqjPeWk'
+		},
+		{
+			name: 'Discord',
+			icon: Users,
+			link: 'https://discord.gg/SYqjPeWk'
+		},
+		{
+			name: 'YouTube',
+			icon: Youtube,
+			link: 'https://www.youtube.com/@ptsdpatient'
+		}
+	];
+
 	const faqs = [
 		{
 			question: 'Will it be open source soon?',
@@ -87,7 +116,35 @@
 		}
 	];
 
+	const deps = [
+		{
+			name: 'LibGDX',
+			desc: 'Cross-platform Java game development framework (OpenGL-based) used as the core runtime and low-level API.',
+			github: 'https://github.com/libgdx/libgdx',
+			icon: '/libgdx.png'
+		},
+		{
+			name: 'gdx-gltf (mgsx-dev)',
+			desc: 'gdx-gltf adds GLTF 2.0 support and PBR rendering for LibGDX, enabling modern Blender→game workflows.',
+			github: 'https://github.com/mgsx-dev/gdx-gltf',
+			icon: '/gdx-gltf.png'
+		},
+		{
+			name: 'Maven / Gradle',
+			desc: 'Dependency & build tooling commonly used to fetch and manage LibGDX and gdx-gltf artifacts in Java projects.',
+			github: 'https://search.maven.org/',
+			icon: '/maven.png'
+		}
+	];
+
 	let openIndex = null;
+
+	function scrollToTop(id) {
+		const el = document.getElementById(id);
+		if (el) {
+			el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	}
 
 	function toggleFAQ(index) {
 		openIndex = openIndex === index ? null : index;
@@ -131,21 +188,27 @@
 				</div>
 			</div>
 			<div class="flex justify-center gap-6 text-xl font-bold">
-				<div
+				<button
+					on:click={() => {
+						scrollToTop('FAQ');
+					}}
 					class="cursor-pointer rounded-full border-2 border-lime-400 bg-lime-500 px-8 py-3 text-white shadow-md transition hover:scale-105"
 				>
 					Get Pav Engine
-				</div>
-				<div
+				</button>
+				<button
+					on:click={() => {
+						scrollToTop('showcase');
+					}}
 					class="cursor-pointer rounded-full border-2 border-gray-600 bg-gray-700 px-8 py-3 text-gray-100 shadow-md transition hover:scale-105"
 				>
 					Explore Showcase
-				</div>
+				</button>
 			</div>
 		</div>
 	</div>
 
-	<div class="relative flex w-full flex-col">
+	<div id="info" class="relative flex w-full flex-col">
 		<div class="flex w-full flex-col justify-between gap-4 p-5">
 			<div class="text-center text-3xl font-bold">What is Pav Engine?</div>
 			<!-- Grid -->
@@ -175,59 +238,83 @@
 	</div>
 
 	<!-- SHOWCASE -->
-	<div class="relative h-[100vh] w-full">
+	<div id="showcase" class="relative h-[100vh] w-full">
 		<Showcase></Showcase>
 	</div>
 
-	<!-- GDX-GLTF -->
-	<!-- <div class="flex h-screen flex-col items-center justify-center bg-white">
-		<img src={gdxgltfImg} alt="gdx-gltf" class="mb-8 w-2/3 max-w-4xl rounded-2xl shadow-md" />
-		<div class="mb-4 text-4xl font-semibold">Powered by gdx-gltf</div>
-		<div class="w-3/4 max-w-3xl text-center text-gray-600">
-			Pav Engine uses gdx-gltf for PBR rendering, smooth animations, and modern asset pipelines
-			directly from Blender.
-		</div>
-	</div> -->
+	<!-- Dependencies Widget -->
+	<div class="w-full py-12">
+		<div class="mx-auto max-w-6xl px-6">
+			<!-- header -->
+			<div class="mx-auto mb-8 flex items-center">
+				<div class="flex items-center gap-4">
+					<img
+						src="/pav.png"
+						alt="Pav Logo"
+						class="h-14 w-16 rounded-lg drop-shadow-sm"
+					/>
+					<div class="flex flex-col">
+						<div class="text-3xl font-bold text-gray-100">Key Dependencies</div>
+						<div class="mt-1 text-xl text-gray-300">
+							Core libraries used by Pav Engine and where to find their source.
+						</div>
+					</div>
+				</div>
+			</div>
 
-	<!-- LIBGDX -->
-	<!-- <div class="flex h-screen flex-col items-center justify-center bg-gray-50">
-		<img src={libgdxImg} alt="LibGDX" class="mb-8 w-2/3 max-w-4xl rounded-2xl shadow-md" />
-		<div class="mb-4 text-4xl font-semibold">Built on LibGDX</div>
-		<div class="w-3/4 max-w-3xl text-center text-gray-600">
-			The trusted cross-platform Java framework providing Pav Engine a solid foundation with
-			multiplatform support and open-source power.
-		</div>
-	</div> -->
+			<!-- grid -->
+			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{#each deps as d}
+					<div
+						class="rounded-2xl border-2 border-gray-600 bg-gray-700 p-5 shadow-sm transition-all duration-200 ease-in-out hover:shadow-md"
+					>
+						<div class="flex items-start gap-4">
+							<!-- icon (replace with your hosted icon files) -->
 
-	<!-- HYBRID LAYER -->
-	<!-- <div class="flex h-screen flex-col items-center justify-center bg-white">
-		<img src={hybridImg} alt="Hybrid Layers" class="mb-8 w-2/3 max-w-4xl rounded-2xl shadow-md" />
-		<div class="mb-4 text-4xl font-semibold">The Power of High + Low Level</div>
-		<div class="w-3/4 max-w-3xl text-center text-gray-600">
-			Pav Engine combines LibGDX’s low-level control with its own high-level ECS, providing both
-			flexibility and performance for perfectly optimized games.
-		</div>
-	</div> -->
+							<div class="flex-1">
+								<div class="flex flex-row items-center gap-3">
+									<img
+										src={d.icon}
+										alt="{d.name} icon"
+										class="h-12 w-12 rounded-lg object-contain"
+									/>
+									<div class="text-lg font-semibold text-gray-100">{d.name}</div>
+								</div>
 
-	<!-- DEPLOYMENT BENEFITS -->
-	<!-- <div class="flex h-screen flex-col items-center justify-center bg-gray-50">
-		<img src={deployImg} alt="Deploy" class="mb-8 w-2/3 max-w-4xl rounded-2xl shadow-md" />
-		<div class="mb-4 text-4xl font-semibold">Deploy Anywhere</div>
-		<div class="w-3/4 max-w-3xl text-center text-gray-600">
-			Pav Engine projects run directly on HTML, Windows, and Linux — without complex setup — letting
-			you share your games instantly with players everywhere.
-		</div>
-	</div> -->
+								<div class="text-md mt-2 leading-relaxed text-gray-300">
+									{d.desc}
+								</div>
 
-	<div class="w-full  py-16">
+								<!-- Github url shown as copyable text (no <a> tag) -->
+								<div class="mt-3">
+									<div class="text-sm text-gray-300">Source</div>
+									<div
+										class="mt-1 rounded-md border border-gray-500 bg-gray-600 px-3 py-2 text-sm break-words text-blue-300 select-all"
+									>
+										{d.github}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="w-full py-16">
 		<div class="mx-auto max-w-5xl px-6">
 			<div class="mb-10 text-center">
 				<div class="text-3xl font-bold text-gray-200">Frequently Asked Questions</div>
-				<div class="mt-2 text-md text-gray-300">Everything you need to know about Pav Engine</div>
+				<div class="text-md mt-2 text-gray-300">
+					Everything you need to know about Pav Engine
+				</div>
 			</div>
 
 			<!-- FAQ Cards -->
-			<div class="flex flex-col gap-4 w-2/3 mx-auto">
+			<div class="mx-auto flex w-2/3 flex-col gap-4">
 				{#each faqs as faq, i}
 					<button
 						class="cursor-pointer rounded-md border-2 border-gray-600 bg-gray-700 p-4 shadow-sm transition-all duration-200 hover:shadow-md"
@@ -244,13 +331,36 @@
 
 						{#if openIndex === i}
 							<div
-								class="mt-3 text-lg text-left leading-relaxed text-gray-300 transition-all duration-300 ease-in-out"
+								class="mt-3 text-left text-lg leading-relaxed text-gray-300 transition-all duration-300 ease-in-out"
 								style="max-height: 200px; opacity: 1;"
 							>
 								{faq.answer}
 							</div>
 						{/if}
-                        </button>
+					</button>
+				{/each}
+			</div>
+		</div>
+	</div>
+
+	<div class="w-full  py-12">
+		<div class="mx-auto max-w-5xl px-6">
+			<div class="mb-8 text-center">
+				<div class="text-4xl font-bold text-gray-200">Connect with us</div>
+				<div class="mt-1 text-md text-gray-300">Follow Pav Engine on these platforms</div>
+			</div>
+
+			<div class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+				{#each socials as social}
+					<button
+						class="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-gray-600 bg-gray-700 p-4 shadow-sm transition-all duration-200 hover:shadow-md"
+						on:click={() => window.open(social.link, '_blank')}
+					>
+						<div class="mb-3 rounded-full border-2 border-gray-600 bg-gray-700 p-4 text-lime-500">
+							<svelte:component this={social.icon} size="32" />
+						</div>
+						<div class="text-xl font-semibold text-gray-200">{social.name}</div>
+					</button>
 				{/each}
 			</div>
 		</div>
