@@ -154,17 +154,17 @@
 <!-- Wrapper -->
 <div class="flex w-full flex-col bg-gray-800 font-sans text-gray-300">
 	<!-- HERO -->
-	<div class="flex h-[100vh] flex-col">
+	<div class="flex md:h-[100vh] w-full flex-col">
 		<div class="flex h-full w-full flex-col justify-center gap-7">
 			<div
-				class="mx-auto flex w-full max-w-7xl flex-col items-center justify-between px-8 md:flex-row"
+				class="mx-auto flex w-full max-w-7xl flex-col items-center justify-between md:px-8 md:flex-row"
 			>
 				<!-- LEFT: Pav Engine Logo (50% width on desktop) -->
 				<div class="flex h-1/2 w-full items-center justify-center md:h-full md:w-1/2">
 					<img
 						src={pavLogo}
 						alt="Pav Engine Logo"
-						class="w-3/4 max-w-lg object-contain md:w-full"
+						class="w-4/5 max-w-lg object-contain md:w-full"
 					/>
 				</div>
 
@@ -173,13 +173,13 @@
 					class="flex w-full flex-col items-center justify-center text-center md:w-1/2 md:items-start md:text-left"
 				>
 					<div class="text-6xl font-bold text-gray-50">Pav Engine</div>
-					<div class="mt-3 text-2xl font-medium text-lime-500">
+					<div class="md:mt-3 mt-6 text-2xl font-medium text-lime-500">
 						Game development made effortless
 					</div>
-					<div class="mt-4 text-lg text-gray-300">
+					<div class="mt-4 text-lg text-gray-300 md:px-0 px-6">
 						Made in India 🇮🇳 • Built on gdx-gltf • Powered by LibGDX
 					</div>
-					<div class="mt-3 text-lg font-semibold text-gray-200">
+					<div class="mt-3 text-lg font-semibold text-gray-200 md:px-0 px-6">
 						Pav Engine, built on LibGDX and enhanced with gdx-gltf, blends low-level
 						control with high-level simplicity for lightweight game creation with
 						seamless HTML, Windows, and Linux deployment — perfect for rapid prototyping
@@ -187,10 +187,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="flex justify-center gap-6 text-xl font-bold">
+			<div class="flex md:flex-row flex-col justify-center gap-6 text-xl font-bold md:px-0 px-8">
 				<button
 					on:click={() => {
-						scrollToTop('FAQ');
+						scrollToTop('socials');
 					}}
 					class="cursor-pointer rounded-full border-2 border-lime-400 bg-lime-500 px-8 py-3 text-white shadow-md transition hover:scale-105"
 				>
@@ -208,9 +208,9 @@
 		</div>
 	</div>
 
-	<div id="info" class="relative flex w-full flex-col">
+	<div id="info" class="relative flex w-full flex-col md:mt-0 mt-5">
 		<div class="flex w-full flex-col justify-between gap-4 p-5">
-			<div class="text-center text-3xl font-bold">What is Pav Engine?</div>
+			<div class="text-center md:text-3xl text-4xl font-bold">What is Pav Engine?</div>
 			<!-- Grid -->
 			<div class="grid grid-cols-1 justify-around gap-4 sm:grid-cols-2 lg:grid-cols-3">
 				{#each pavInfo as info}
@@ -314,7 +314,7 @@
 			</div>
 
 			<!-- FAQ Cards -->
-			<div class="mx-auto flex w-2/3 flex-col gap-4">
+			<div class="mx-auto flex md:w-2/3 flex-col gap-4">
 				{#each faqs as faq, i}
 					<button
 						class="cursor-pointer rounded-md border-2 border-gray-600 bg-gray-700 p-4 shadow-sm transition-all duration-200 hover:shadow-md"
@@ -343,7 +343,7 @@
 		</div>
 	</div>
 
-	<div class="w-full  py-12">
+	<div id="socials" class="w-full  py-12">
 		<div class="mx-auto max-w-5xl px-6">
 			<div class="mb-8 text-center">
 				<div class="text-4xl font-bold text-gray-200">Connect with us</div>
@@ -368,9 +368,9 @@
 
 	<!-- FOOTER -->
 	<div class="flex h-40 flex-col items-center justify-center border-t border-gray-700">
-		<div class="text-gray-200">
+		<div class="text-gray-200 text-center">
 			© 2025 Pav Engine • Developed by Tanishq Dhote | Orbit Technologies Nagpur
 		</div>
-		<div class="mt-2 text-sm text-gray-300">Powered by LibGDX & gdx-gltf</div>
+		<div class="mt-5 text-sm text-gray-300">Powered by LibGDX & gdx-gltf</div>
 	</div>
 </div>

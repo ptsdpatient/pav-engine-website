@@ -42,11 +42,11 @@
 			<div class="relative  flex h-full w-full flex-row gap-3 overflow-hidden">
 				{#each showcases as _, i}
 					<div
-						class="absolute top-0 flex min-w-[100vw] h-full  flex-row justify-center"
+						class="absolute top-0 flex min-w-[100vw]  h-full  flex-row justify-center"
 						style="left: {(i - current) * 100}vw; transition: left 0.7s ease-in-out;"
 					>
 						<div
-							class="relative flex aspect-[5/3]  h-full flex-col items-center gap-2 "
+							class="relative flex md:aspect-[5/3]  h-full flex-col items-center gap-2 "
 						>
                         
 							<img class="rounded-xl h-full w-full border-2 border-gray-600" src={_.img} alt="" />
@@ -61,7 +61,7 @@
 
 								<button
                                     on:click={()=>{window.open(_.link)}}
-									class="w-1/4 text-center mx-auto text-xl font-semibold cursor-pointer rounded-full border-2 border-lime-400 bg-lime-500 px-8 py-3 text-white transition-all duration-200 ease-in-out hover:bg-lime-500"
+									class="md:w-1/4 text-center mx-auto text-xl font-semibold cursor-pointer rounded-full border-2 border-lime-400 bg-lime-500 px-8 py-3 text-white transition-all duration-200 ease-in-out hover:bg-lime-500"
 								>
 									Try Now
 								</button>
