@@ -190,11 +190,11 @@
 			<div class="flex md:flex-row flex-col justify-center gap-6 text-xl font-bold md:px-0 px-8">
 				<button
 					on:click={() => {
-						scrollToTop('socials');
+						window.location="/docs"
 					}}
 					class="cursor-pointer rounded-full border-2 border-lime-400 bg-lime-500 px-8 py-3 text-white shadow-md transition hover:scale-105"
 				>
-					Get Pav Engine
+					Documentation
 				</button>
 				<button
 					on:click={() => {
