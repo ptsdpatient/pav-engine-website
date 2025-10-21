@@ -108,15 +108,12 @@
 	});
 </script>
 
-<!-- Wrapper -->
 <div class="flex w-full flex-col bg-gray-800 font-sans text-gray-300">
-	<!-- HERO -->
 	<div class="flex w-full flex-col md:h-[100vh]">
 		<div class="flex h-full w-full flex-col justify-center gap-7">
 			<div
 				class="mx-auto flex w-full max-w-7xl flex-col items-center justify-between md:flex-row md:px-8"
 			>
-				<!-- LEFT: Pav Engine Logo (50% width on desktop) -->
 				<div class="flex h-1/2 w-full items-center justify-center md:h-full md:w-1/2">
 					<img
 						src={pavLogo}
@@ -125,7 +122,6 @@
 					/>
 				</div>
 
-				<!-- RIGHT: Title, Subtitle, Tagline, Buttons -->
 				<div
 					class="flex w-full flex-col items-center justify-center text-center md:w-1/2 md:items-start md:text-left"
 				>
