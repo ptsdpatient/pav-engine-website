@@ -1,4 +1,6 @@
 <script>
+	import { onMount } from 'svelte';
+	import { data } from '$lib/info';
 	import {
 		Cpu,
 		Layers,
@@ -11,76 +13,27 @@
 		Shield,
 		ChevronDown,
 		Github,
-		Users ,
+		Users,
 		Twitter,
 		Linkedin,
 		Youtube,
-        Gamepad
-
+		Gamepad
 	} from 'lucide-svelte';
 
 	import pavLogo from '$lib/images/pav.png';
-	// import showcaseImg from '$lib/images/showcase.png';
-	// import gdxgltfImg from '$lib/images/gdx-gltf.png';
-	// import libgdxImg from '$lib/images/libgdx.png';
 	import hybridImg from '$lib/images/hybrid.png';
 	import deployImg from '$lib/images/deploy.png';
 	import Showcase from '$lib/Showcase.svelte';
 
-	const pavInfo = [
-		{
-			title: 'Engine Overview',
-			desc: 'A lightweight yet powerful framework built on LibGDX and gdx-gltf, forming a complete modular engine.',
-			icon: Cpu
-		},
-		{
-			title: 'Architecture',
-			desc: 'Uses an ECS-based design for clean data separation and easy scalability across gameplay systems.',
-			icon: Layers
-		},
-		{
-			title: 'Rendering & Assets',
-			desc: 'Modern PBR rendering with seamless Blender-to-game workflows powered by gdx-gltf integration.',
-			icon: Image
-		},
-		{
-			title: 'Built-in Tools',
-			desc: 'Includes PavMapEditor, PavUI, and PavPhysics for faster iteration and efficient game creation.',
-			icon: Wrench
-		},
-		{
-			title: 'Cross-Platform Deploy',
-			desc: 'Export to HTML5, Windows, and Linux effortlessly — same project, zero compromises.',
-			icon: Globe
-		},
-		{
-			title: 'Low + High Level Combo',
-			desc: 'Merges low-level LibGDX control with high-level tools for speed, flexibility, and optimization.',
-			icon: Code
-		},
-		{
-			title: 'Game Jam Ready',
-			desc: 'Quick setup, fast build times, and easy deployment make it ideal for game jam prototypes.',
-			icon: Rocket
-		},
-		{
-			title: 'Performance',
-			desc: 'Optimized rendering, minimal overhead, and resource control keep games smooth and efficient.',
-			icon: Gauge
-		},
-		{
-			title: 'Proprietary & Supported',
-			desc: 'Privately developed with consistent updates and long-term support for creators and studios.',
-			icon: Shield
-		}
-	];
+	let pavInfo;
 
 	const socials = [
 		{
 			name: 'GitHub',
 			icon: Github,
 			link: 'https://github.com/ptsdpatient'
-		},{
+		},
+		{
 			name: 'Itch io',
 			icon: Gamepad,
 			link: 'https://discord.gg/SYqjPeWk'
@@ -149,15 +102,19 @@
 	function toggleFAQ(index) {
 		openIndex = openIndex === index ? null : index;
 	}
+
+	onMount(() => {
+		pavInfo = data;
+	});
 </script>
 
 <!-- Wrapper -->
 <div class="flex w-full flex-col bg-gray-800 font-sans text-gray-300">
 	<!-- HERO -->
-	<div class="flex md:h-[100vh] w-full flex-col">
+	<div class="flex w-full flex-col md:h-[100vh]">
 		<div class="flex h-full w-full flex-col justify-center gap-7">
 			<div
-				class="mx-auto flex w-full max-w-7xl flex-col items-center justify-between md:px-8 md:flex-row"
+				class="mx-auto flex w-full max-w-7xl flex-col items-center justify-between md:flex-row md:px-8"
 			>
 				<!-- LEFT: Pav Engine Logo (50% width on desktop) -->
 				<div class="flex h-1/2 w-full items-center justify-center md:h-full md:w-1/2">
@@ -173,13 +130,13 @@
 					class="flex w-full flex-col items-center justify-center text-center md:w-1/2 md:items-start md:text-left"
 				>
 					<div class="text-6xl font-bold text-gray-50">Pav Engine</div>
-					<div class="md:mt-3 mt-6 text-2xl font-medium text-lime-500">
+					<div class="mt-6 text-2xl font-medium text-lime-500 md:mt-3">
 						Game development made effortless
 					</div>
-					<div class="mt-4 text-lg text-gray-300 md:px-0 px-6">
+					<div class="mt-4 px-6 text-lg text-gray-300 md:px-0">
 						Made in India 🇮🇳 • Built on gdx-gltf • Powered by LibGDX
 					</div>
-					<div class="mt-3 text-lg font-semibold text-gray-200 md:px-0 px-6">
+					<div class="mt-3 px-6 text-lg font-semibold text-gray-200 md:px-0">
 						Pav Engine, built on LibGDX and enhanced with gdx-gltf, blends low-level
 						control with high-level simplicity for lightweight game creation with
 						seamless HTML, Windows, and Linux deployment — perfect for rapid prototyping
@@ -187,10 +144,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="flex md:flex-row flex-col justify-center gap-6 text-xl font-bold md:px-0 px-8">
+			<div
+				class="flex flex-col justify-center gap-6 px-8 text-xl font-bold md:flex-row md:px-0"
+			>
 				<button
 					on:click={() => {
-						window.location="/docs"
+						window.location = '/docs';
 					}}
 					class="cursor-pointer rounded-full border-2 border-lime-400 bg-lime-500 px-8 py-3 text-white shadow-md transition hover:scale-105"
 				>
@@ -208,10 +167,9 @@
 		</div>
 	</div>
 
-	<div id="info" class="relative flex w-full flex-col md:mt-0 mt-5">
+	<!-- <div id="info" class="relative flex w-full flex-col md:mt-0 mt-5">
 		<div class="flex w-full flex-col justify-between gap-4 p-5">
 			<div class="text-center md:text-3xl text-4xl font-bold">What is Pav Engine?</div>
-			<!-- Grid -->
 			<div class="grid grid-cols-1 justify-around gap-4 sm:grid-cols-2 lg:grid-cols-3">
 				{#each pavInfo as info}
 					<div
@@ -235,17 +193,40 @@
 				{/each}
 			</div>
 		</div>
+	</div> -->
+
+	<div class="space-y-6">
+		{#each pavInfo as item, idx}
+			<article class="overflow-hidden rounded-2xl bg-gray-800 shadow-md">
+				<div class="md:flex md:items-stretch">
+					<div
+						class={`flex items-center justify-center p-4 md:w-1/2 ${idx % 2 === 1 ? 'md:order-2' : ''}`}
+					>
+						<div class="h-48 w-full overflow-hidden rounded-lg bg-gray-700 md:h-full">
+							<img
+								src={item.img}
+								alt={item.title}
+								class="h-full w-full object-cover opacity-90"
+							/>
+						</div>
+					</div>
+
+					<div class="flex flex-col justify-center p-6 md:w-1/2">
+						<h2 class="text-2xl font-semibold text-lime-300">{item.title}</h2>
+						<div class="mt-1 text-sm text-gray-400 italic">{item.subtitle}</div>
+						<p class="mt-4 leading-relaxed text-gray-300">{item.desc}</p>
+					</div>
+				</div>
+			</article>
+		{/each}
 	</div>
 
-	<!-- SHOWCASE -->
 	<div id="showcase" class="relative h-[100vh] w-full">
 		<Showcase></Showcase>
 	</div>
 
-	<!-- Dependencies Widget -->
 	<div class="w-full py-12">
 		<div class="mx-auto max-w-6xl px-6">
-			<!-- header -->
 			<div class="mx-auto mb-8 flex items-center">
 				<div class="flex items-center gap-4">
 					<img
@@ -262,14 +243,12 @@
 				</div>
 			</div>
 
-			<!-- grid -->
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				{#each deps as d}
 					<div
 						class="rounded-2xl border-2 border-gray-600 bg-gray-700 p-5 shadow-sm transition-all duration-200 ease-in-out hover:shadow-md"
 					>
 						<div class="flex items-start gap-4">
-							<!-- icon (replace with your hosted icon files) -->
 
 							<div class="flex-1">
 								<div class="flex flex-row items-center gap-3">
@@ -285,7 +264,6 @@
 									{d.desc}
 								</div>
 
-								<!-- Github url shown as copyable text (no <a> tag) -->
 								<div class="mt-3">
 									<div class="text-sm text-gray-300">Source</div>
 									<div
@@ -302,8 +280,6 @@
 		</div>
 	</div>
 
-
-
 	<div class="w-full py-16">
 		<div class="mx-auto max-w-5xl px-6">
 			<div class="mb-10 text-center">
@@ -313,8 +289,7 @@
 				</div>
 			</div>
 
-			<!-- FAQ Cards -->
-			<div class="mx-auto flex md:w-2/3 flex-col gap-4">
+			<div class="mx-auto flex flex-col gap-4 md:w-2/3">
 				{#each faqs as faq, i}
 					<button
 						class="cursor-pointer rounded-md border-2 border-gray-600 bg-gray-700 p-4 shadow-sm transition-all duration-200 hover:shadow-md"
@@ -343,11 +318,11 @@
 		</div>
 	</div>
 
-	<div id="socials" class="w-full  py-12">
+	<div id="socials" class="w-full py-12">
 		<div class="mx-auto max-w-5xl px-6">
 			<div class="mb-8 text-center">
 				<div class="text-4xl font-bold text-gray-200">Connect with us</div>
-				<div class="mt-1 text-md text-gray-300">Follow Pav Engine on these platforms</div>
+				<div class="text-md mt-1 text-gray-300">Follow Pav Engine on these platforms</div>
 			</div>
 
 			<div class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
@@ -356,7 +331,9 @@
 						class="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-gray-600 bg-gray-700 p-4 shadow-sm transition-all duration-200 hover:shadow-md"
 						on:click={() => window.open(social.link, '_blank')}
 					>
-						<div class="mb-3 rounded-full border-2 border-gray-600 bg-gray-700 p-4 text-lime-500">
+						<div
+							class="mb-3 rounded-full border-2 border-gray-600 bg-gray-700 p-4 text-lime-500"
+						>
 							<svelte:component this={social.icon} size="32" />
 						</div>
 						<div class="text-xl font-semibold text-gray-200">{social.name}</div>
@@ -366,9 +343,8 @@
 		</div>
 	</div>
 
-	<!-- FOOTER -->
 	<div class="flex h-40 flex-col items-center justify-center border-t border-gray-700">
-		<div class="text-gray-200 text-center">
+		<div class="text-center text-gray-200">
 			© 2025 Pav Engine • Developed by Tanishq Dhote | Orbit Technologies Nagpur
 		</div>
 		<div class="mt-5 text-sm text-gray-300">Powered by LibGDX & gdx-gltf</div>

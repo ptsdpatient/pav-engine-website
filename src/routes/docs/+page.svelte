@@ -63,7 +63,6 @@
 <style>
     ::-webkit-scrollbar-track {
     background: oklch(37.3% 0.034 259.733);
-    /* dark background track */
     border-radius: 10px;
 }
 
