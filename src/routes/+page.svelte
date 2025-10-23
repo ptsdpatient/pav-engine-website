@@ -163,7 +163,7 @@
 		</div>
 	</div>
 
-	<!-- <div id="info" class="relative flex w-full flex-col md:mt-0 mt-5">
+	<div id="info" class="relative flex w-full flex-col md:mt-0 mt-5">
 		<div class="flex w-full flex-col justify-between gap-4 p-5">
 			<div class="text-center md:text-3xl text-4xl font-bold">What is Pav Engine?</div>
 			<div class="grid grid-cols-1 justify-around gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -189,9 +189,9 @@
 				{/each}
 			</div>
 		</div>
-	</div> -->
+	</div>
 
-	<div class="space-y-6">
+	<!-- <div class="space-y-6">
 		{#each pavInfo as item, idx}
 			<article class="overflow-hidden rounded-2xl bg-gray-800 shadow-md">
 				<div class="md:flex md:items-stretch">
@@ -215,7 +215,7 @@
 				</div>
 			</article>
 		{/each}
-	</div>
+	</div> -->
 
 	<div id="showcase" class="relative h-[100vh] w-full">
 		<Showcase></Showcase>
